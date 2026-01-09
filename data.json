@@ -1,0 +1,151 @@
+{
+  "panels": [
+    {
+      "id": 1,
+      "text": "גליקי - קפה בטבע",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": true,
+      "column": 1
+    },
+    {
+      "id": 2,
+      "text": "חוחובה",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": true,
+      "column": 1
+    },
+    {
+      "id": 3,
+      "text": "אסף בן נון - טיפול בכאב",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": true,
+      "column": 1
+    },
+    {
+      "id": 4,
+      "text": "הקפה של סיוונה",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": true,
+      "column": 1
+    },
+    {
+      "id": 5,
+      "text": "יסמין וטרינרית",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": true,
+      "column": 1
+    },
+    {
+      "id": 6,
+      "text": "",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": false,
+      "column": 1
+    },
+    {
+      "id": 7,
+      "text": "",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": false,
+      "column": 1
+    },
+    {
+      "id": 8,
+      "text": "",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": false,
+      "column": 1
+    },
+    {
+      "id": 9,
+      "text": "",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": false,
+      "column": 1
+    },
+    {
+      "id": 10,
+      "text": "מורבים הפוים",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": false,
+      "column": 1
+    },
+    {
+      "id": 11,
+      "text": "בקינוג דוצורוים",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": false,
+      "column": 1
+    },
+    {
+      "id": 12,
+      "text": "יעל זורדה - אדריכלית",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": true,
+      "column": 2
+    },
+    {
+      "id": 13,
+      "text": "תומר עץ",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": true,
+      "column": 2
+    },
+    {
+      "id": 14,
+      "text": "סטודיו ליוגה - ריבי קולטון",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": true,
+      "column": 2
+    },
+    {
+      "id": 15,
+      "text": "המטבח של אלה",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": true,
+      "column": 2
+    },
+    {
+      "id": 16,
+      "text": "טיים אאוט בר",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": true,
+      "column": 2
+    },
+    {
+      "id": 17,
+      "text": "",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": false,
+      "column": 2
+    },
+    {
+      "id": 18,
+      "text": "",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": false,
+      "column": 2
+    },
+    {
+      "id": 19,
+      "text": "",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": false,
+      "column": 2
+    },
+    {
+      "id": 20,
+      "text": "",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": false,
+      "column": 2
+    },
+    {
+      "id": 21,
+      "text": "",
+      "url": "https://maps.google.com/?q=32.5,35.5",
+      "visible": false,
+      "column": 2
+    }
+  ]
+}

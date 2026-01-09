@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>התחברות מנהל - שלט הכוונה</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h1>התחברות מנהל</h1>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">שם משתמש:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">סיסמה:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+                <button type="submit" class="login-button">התחבר</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    // Redirect to admin panel
+                    window.location.href = '/admin-panel.html';
+                } else {
+                    errorMessage.textContent = data.error || 'שגיאה בהתחברות';
+                    errorMessage.style.display = 'block';
+                }
+            } catch (error) {
+                errorMessage.textContent = 'שגיאה בחיבור לשרת';
+                errorMessage.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
