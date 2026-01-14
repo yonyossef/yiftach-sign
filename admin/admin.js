@@ -3,9 +3,7 @@ let panelsData = [];
 // Check authentication on page load
 async function checkAuth() {
     try {
-        const response = await fetch('/api/verify', {
-            credentials: 'include'
-        });
+        const response = await fetch('/api/verify');
         const data = await response.json();
         
         if (!data.authenticated) {
@@ -96,11 +94,6 @@ function escapeHtml(text) {
 
 // Save panels data
 async function savePanels() {
-    // Ask for confirmation before saving
-    if (!confirm('האם אתה בטוח שברצונך לשמור את השינויים?')) {
-        return;
-    }
-    
     const panelsList = document.getElementById('panelsList');
     const panelEditors = panelsList.querySelectorAll('.panel-editor');
     
@@ -127,7 +120,6 @@ async function savePanels() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            credentials: 'include',
             body: JSON.stringify({ panels: updatedPanels })
         });
         
@@ -148,10 +140,7 @@ async function savePanels() {
 // Logout
 async function logout() {
     try {
-        await fetch('/api/logout', { 
-            method: 'POST',
-            credentials: 'include'
-        });
+        await fetch('/api/logout', { method: 'POST' });
         window.location.href = '/admin.html';
     } catch (error) {
         console.error('Logout error:', error);
