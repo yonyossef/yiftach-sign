@@ -104,8 +104,18 @@ app.post('/api/login', async (req, res) => {
     return res.status(400).json({ error: 'Username and password required' });
   }
 
+  // Debug logging (remove in production if needed)
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('Login attempt:', { username, configUsername: config.username, hasHash: !!config.passwordHash });
+  }
+
   if (username !== config.username) {
     return res.status(401).json({ error: 'Invalid credentials' });
+  }
+
+  if (!config.passwordHash) {
+    console.error('No password hash found in config');
+    return res.status(500).json({ error: 'Server configuration error' });
   }
 
   try {
