@@ -3,12 +3,17 @@ let panelsData = [];
 // Check authentication on page load
 async function checkAuth() {
     try {
+        console.log('Checking auth, cookies:', document.cookie);
         const response = await fetch('/api/verify', {
             credentials: 'include'
         });
         const data = await response.json();
         
+        console.log('Verify response:', data);
+        console.log('Response headers:', response.headers);
+        
         if (!data.authenticated) {
+            console.log('Not authenticated, redirecting to login');
             window.location.href = '/admin.html';
             return false;
         }

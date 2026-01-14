@@ -45,9 +45,26 @@
                 
                 const data = await response.json();
                 
+                console.log('Login response:', data);
+                console.log('Response headers:', response.headers);
+                console.log('Cookies after login:', document.cookie);
+                
                 if (response.ok && data.success) {
-                    // Redirect to admin panel
-                    window.location.href = '/admin-panel.html';
+                    // Wait a moment for cookie to be set, then verify
+                    setTimeout(async () => {
+                        const verifyResponse = await fetch('/api/verify', {
+                            credentials: 'include'
+                        });
+                        const verifyData = await verifyResponse.json();
+                        console.log('Verify after login:', verifyData);
+                        
+                        if (verifyData.authenticated) {
+                            window.location.href = '/admin-panel.html';
+                        } else {
+                            errorMessage.textContent = 'התחברות הצליחה אבל האימות נכשל. נסה שוב.';
+                            errorMessage.style.display = 'block';
+                        }
+                    }, 100);
                 } else {
                     errorMessage.textContent = data.error || 'שגיאה בהתחברות';
                     errorMessage.style.display = 'block';
