@@ -8,6 +8,9 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Trust proxy (required for Railway/Heroku and similar platforms)
+app.set('trust proxy', 1);
+
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -15,11 +18,13 @@ app.use(session({
   secret: process.env.SESSION_SECRET || 'yiftach-sign-secret-key-change-in-production',
   resave: false,
   saveUninitialized: false,
+  name: 'yiftach.sid', // Custom session name
   cookie: { 
     secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
     sameSite: 'lax',
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    domain: process.env.NODE_ENV === 'production' ? undefined : undefined // Let browser set domain
   }
 }));
 
@@ -128,7 +133,17 @@ app.post('/api/login', async (req, res) => {
     if (match) {
       req.session.authenticated = true;
       req.session.username = username;
-      res.json({ success: true, message: 'Login successful' });
+      
+      // Save session explicitly
+      req.session.save((err) => {
+        if (err) {
+          console.error('Session save error:', err);
+          return res.status(500).json({ error: 'Session error' });
+        }
+        
+        console.log('Login successful, session ID:', req.sessionID);
+        res.json({ success: true, message: 'Login successful', sessionId: req.sessionID });
+      });
     } else {
       res.status(401).json({ error: 'Invalid credentials' });
     }
@@ -140,10 +155,14 @@ app.post('/api/login', async (req, res) => {
 
 // GET /api/verify - Verify session
 app.get('/api/verify', (req, res) => {
+  console.log('Verify request - Session ID:', req.sessionID);
+  console.log('Verify request - Session data:', req.session);
+  console.log('Verify request - Cookies:', req.headers.cookie);
+  
   if (req.session && req.session.authenticated) {
-    res.json({ authenticated: true, username: req.session.username });
+    res.json({ authenticated: true, username: req.session.username, sessionId: req.sessionID });
   } else {
-    res.json({ authenticated: false });
+    res.json({ authenticated: false, sessionId: req.sessionID });
   }
 });
 
