@@ -23,7 +23,9 @@ async function checkAuth() {
 // Load panels data
 async function loadPanels() {
     try {
-        const response = await fetch('/api/data');
+        const response = await fetch('/api/data', {
+            credentials: 'include'
+        });
         const data = await response.json();
         panelsData = data.panels;
         renderPanels();
