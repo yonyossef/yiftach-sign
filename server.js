@@ -43,8 +43,17 @@ function writeData(data) {
   }
 }
 
-// Helper function to read config.json
+// Helper function to read config.json or environment variables
 function readConfig() {
+  // Check environment variables first (for production/Railway)
+  if (process.env.ADMIN_USERNAME && process.env.ADMIN_PASSWORD_HASH) {
+    return {
+      username: process.env.ADMIN_USERNAME,
+      passwordHash: process.env.ADMIN_PASSWORD_HASH
+    };
+  }
+  
+  // Fall back to config.json (for local development)
   try {
     const config = fs.readFileSync(path.join(__dirname, 'config.json'), 'utf8');
     return JSON.parse(config);
